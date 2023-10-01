@@ -38,7 +38,20 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+
+    let str = '';
+    for (let index = 0; index < expr.length; index += 10) {
+        const subString = expr.substring(index, index + 10);
+        
+        if (subString === '**********') {
+            str += ' ';
+        } else {
+            const morseKey = subString.match(/1[01]+/)[0].replaceAll('11', '-').replaceAll('10', '.');
+            str += MORSE_TABLE[morseKey];
+        }
+    }
+
+    return str;
 }
 
 module.exports = {
